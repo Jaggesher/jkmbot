@@ -25,7 +25,7 @@ class BotController extends Controller
                 $message = $this->GenerateMessgae($senderId,"Second Mood");
                 $this->SendResponse($message);
             }
-            if($senderMessage == "Not Sure" || $senderMessage == "Not Sure"){
+            if($senderMessage == "Author" || $senderMessage == "This Bot Project"){
                 $this->SendTypingMsg($senderId);
                 $message = $this->GenerateMessgae($senderId,"continue");
                 $this->SendResponse($message);
