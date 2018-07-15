@@ -224,6 +224,22 @@ class BotController extends Controller
                 ],
             ];
 
+        }else if ($senderMessage == "bye"){
+            $botMessage = [
+                "recipient" => [
+                    "id" => $senderId,
+                ],
+                "message" => [
+                    "text" => 'Bye Bye. Take Care:)',
+                    "quick_replies" => [
+                        [
+                            "content_type" => "text",
+                            "title" => "hi",
+                            "payload" => "hi",
+                        ],
+                    ],
+                ],
+            ];
         } else if ($senderMessage == "continue"){
             $botMessage = [
                 "recipient" => [
@@ -241,7 +257,12 @@ class BotController extends Controller
                             "content_type" => "text",
                             "title" => "Author",
                             "payload" => "Author",
-                        ]
+                        ],
+                        [
+                            "content_type" => "text",
+                            "title" => "bye",
+                            "payload" => "bye",
+                        ],
                     ],
                 ],
             ];
