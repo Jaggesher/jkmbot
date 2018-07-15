@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/bot', function(){
+    return response("Fail",401);
+})->middleware('verifybot');
+
+Route::post('/bot','BotController@bot');
