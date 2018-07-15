@@ -20,9 +20,14 @@ class BotController extends Controller
             $this->SendTypingMsg($senderId);
             $message = $this->GenerateMessgae($senderId,$senderMessage);
             $this->SendResponse($message);
-            if($senderMessage == "Not Sure."){
+            if($senderMessage == "Not Sure"){
                 $this->SendTypingMsg($senderId);
                 $message = $this->GenerateMessgae($senderId,"Second Mood");
+                $this->SendResponse($message);
+            }
+            if($senderMessage == "Not Sure" || $senderMessage == "Not Sure"){
+                $this->SendTypingMsg($senderId);
+                $message = $this->GenerateMessgae($senderId,"continue");
                 $this->SendResponse($message);
             }
         }
@@ -34,35 +39,36 @@ class BotController extends Controller
      * @param $senderMessage
      * @return array|string
      */
-    private function GenerateMessgae($senderId, $senderMessage){
-        $botMessage="";
-        if($senderMessage == "Fine."){
-            $botMessage=[
+    private function GenerateMessgae($senderId, $senderMessage)
+    {
+        $botMessage = "";
+        if ($senderMessage == "Fine") {
+            $botMessage = [
                 "recipient" => [
                     "id" => $senderId,
                 ],
-                "message"   => [
+                "message" => [
                     "text" => 'Great, Let me inform you something. :)',
                     "quick_replies" => [
                         [
-                            "content_type"=>"text",
-                            "title"=> "This Bot Project.",
-                            "payload"=>"This Bot Project.",
+                            "content_type" => "text",
+                            "title" => "This Bot Project",
+                            "payload" => "This Bot Project",
                         ],
                         [
-                            "content_type"=>"text",
-                            "title"=> "Author.",
-                            "payload"=>"Author.",
+                            "content_type" => "text",
+                            "title" => "Author",
+                            "payload" => "Author",
                         ]
                     ],
                 ],
             ];
-        }else if($senderMessage == "Not Sure."){
-            $botMessage=[
+        } else if ($senderMessage == "Not Sure") {
+            $botMessage = [
                 "recipient" => [
                     "id" => $senderId,
                 ],
-                "message"   => [
+                "message" => [
                     "attachment" => [
                         "type" => "template",
                         "payload" => [
@@ -89,31 +95,31 @@ class BotController extends Controller
                     ],
                 ],
             ];
-        }else if($senderMessage == "Second Mood"){
-            $botMessage=[
+        } else if ($senderMessage == "Second Mood") {
+            $botMessage = [
                 "recipient" => [
                     "id" => $senderId,
                 ],
-                "message"   => [
+                "message" => [
                     "text" => "What about Now ??",
                     "quick_replies" => [
                         [
-                            "content_type"=>"text",
-                            "title"=> "Fine.",
-                            "payload"=>"Fine.",
+                            "content_type" => "text",
+                            "title" => "Fine",
+                            "payload" => "Fine",
                         ],
                         [
-                            "content_type"=>"text",
-                            "title"=> "Not Sure.",
-                            "payload"=>"Not Sure.",
+                            "content_type" => "text",
+                            "title" => "Not Sure",
+                            "payload" => "Not Sure",
                         ]
                     ],
                 ],
             ];
 
-        }else if($senderMessage == "Author."){
+        } else if ($senderMessage == "Author") {
 
-            $botMessage=[
+            $botMessage = [
                 "recipient" => [
                     "id" => $senderId
                 ],
@@ -183,21 +189,21 @@ class BotController extends Controller
                     ]
                 ]
             ];
-        }else if($senderMessage == "This Bot Project."){
+        } else if ($senderMessage == "This Bot Project") {
 
-            $botMessage=[
+            $botMessage = [
                 "recipient" => [
                     "id" => $senderId,
                 ],
-                "message"   => [
+                "message" => [
                     "attachment" => [
                         "type" => "template",
                         "payload" => [
                             "template_type" => "generic",
                             "elements" => [
                                 [
-                                    "title"=>"Welcome To jkmbot!",
-                                    "image_url"=>"https://avatars3.githubusercontent.com/u/16000186?s=400&v=4",
+                                    "title" => "Welcome To jkmbot!",
+                                    "image_url" => "https://avatars3.githubusercontent.com/u/16000186?s=400&v=4",
                                     "subtitle" => "The purpose of this project is to pass technical test of MCC Ltd.",
                                     "default_action" => [
                                         "type" => "web_url",
@@ -218,7 +224,28 @@ class BotController extends Controller
                 ],
             ];
 
-        } else{
+        } else if ($senderMessage == "continue"){
+            $botMessage = [
+                "recipient" => [
+                    "id" => $senderId,
+                ],
+                "message" => [
+                    "text" => "Continue.....",
+                    "quick_replies" => [
+                        [
+                            "content_type" => "text",
+                            "title" => "This Bot Project",
+                            "payload" => "This Bot Project",
+                        ],
+                        [
+                            "content_type" => "text",
+                            "title" => "Author",
+                            "payload" => "Author",
+                        ]
+                    ],
+                ],
+            ];
+        }else{
             $message = $this->GreetingMessage($senderId);
             $botMessage=[
                 "recipient" => [
@@ -229,13 +256,13 @@ class BotController extends Controller
                     "quick_replies" => [
                         [
                             "content_type"=>"text",
-                            "title"=> "Fine.",
-                            "payload"=>"Fine.",
+                            "title"=> "Fine",
+                            "payload"=>"Fine",
                         ],
                         [
                             "content_type"=>"text",
-                            "title"=> "Not Sure.",
-                            "payload"=>"Not Sure.",
+                            "title"=> "Not Sure",
+                            "payload"=>"Not Sure",
                         ]
                     ],
                 ],
