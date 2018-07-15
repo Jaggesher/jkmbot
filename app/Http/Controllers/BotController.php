@@ -64,6 +64,7 @@ class BotController extends Controller
                 ],
             ];
         } else if ($senderMessage == "Not Sure") {
+            $videoUrl = $this->ChooseFunnyVideo();
             $botMessage = [
                 "recipient" => [
                     "id" => $senderId,
@@ -76,17 +77,12 @@ class BotController extends Controller
                             "elements" => [
                                 [
                                     "media_type" => "video",
-                                    "url" => "https://www.facebook.com/CheesasOfUET/videos/2108757349199245/",
+                                    "url" => $videoUrl,
                                     "buttons" => [
                                         [
                                             "type" => "web_url",
-                                            "url" => "https://www.facebook.com/pg/CheesasOfUET/videos/",
-                                            "title" => "View More..",
-                                        ],
-                                        [
-                                            "type" => "web_url",
-                                            "url" => "https://www.facebook.com/ProgrammersCreateLife/videos/",
-                                            "title" => "And View More...",
+                                            "url" => $videoUrl,
+                                            "title" => "View..",
                                         ],
                                     ],
                                 ],
@@ -351,5 +347,20 @@ class BotController extends Controller
             "sender_action" => "typing_on",
         ];
         $this->SendResponse($botMessage);
+    }
+
+    private function ChooseFunnyVideo(){
+        $val = rand(1,10);
+        if($val == 1) return "https://www.facebook.com/CheesasOfUET/videos/2108757349199245/";
+        else if($val == 2) return "https://www.facebook.com/CheesasOfUET/videos/2132811086793871/";
+        else if($val == 3) return "https://www.facebook.com/CheesasOfUET/videos/2133042036770776/";
+        else if($val == 4) return "https://www.facebook.com/CheesasOfUET/videos/2133042906770689/";
+        else if($val == 5) return "https://www.facebook.com/CheesasOfUET/videos/2126791197395860/";
+        else if($val == 6) return "https://www.facebook.com/CheesasOfUET/videos/2122767464464900/";
+        else if($val == 7) return "https://www.facebook.com/CheesasOfUET/videos/2116294721778841/";
+        else if($val == 8) return "https://www.facebook.com/orparony1/videos/2399365900105507/";
+        else if($val == 9) return "https://www.facebook.com/JokesTechnical/videos/2051596218453461/";
+        else if($val == 10) return "https://www.facebook.com/JokesTechnical/videos/2089804117966004/";
+        else return "https://www.facebook.com/JokesTechnical/videos/2089067551372994/";
     }
 }
